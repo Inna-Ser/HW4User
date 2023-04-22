@@ -36,13 +36,12 @@ class UserDaoImplTest {
 
     @Test
     void shouldGetUserByName() {
-        User user = new User("Mary");
-        Assertions.assertEquals("Mary", user.getName());
+//        User user = new User("Mary");
+        Assertions.assertEquals("Mary", userDao.getUserByName("Mary"));
     }
 
     @Test
     void shouldGetNullIfUserIsNot() {
-        String name = null;
-        Assertions.assertNull(name);
+        Assertions.assertEquals("Mary", userDao.getUserByName("Jack"));
     }
 }

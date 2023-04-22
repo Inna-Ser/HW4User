@@ -22,14 +22,12 @@ public class UserDaoImpl implements UserDao {
     @Override
     public String addUser(String userName) throws UserExistsException {
         if (userName != null || !userName.isEmpty()) {
-            if (users.contains(user.getName())) {
-                throw new UserExistsException("пользователь с таким именем уже есть");
+            if (!users.contains(user.getName())) {
+                users.add(new User());
+                return "новывй пользователь добавлен";
             }
-            return null;
-        } else {
         }
-        users.add(new User());
-        return "новывй пользователь добавлен";
+        throw new UserExistsException("пользователь с таким именем уже есть");
     }
 
     @Override

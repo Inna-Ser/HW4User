@@ -9,6 +9,9 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import pro.sky.hw4user.User;
 import pro.sky.hw4user.dao.UserDaoImpl;
 
+import java.util.Collection;
+import java.util.Set;
+
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.anyBoolean;
 import static org.mockito.Mockito.mock;
@@ -23,20 +26,18 @@ class UserServiceImplTest {
     @InjectMocks
     private UserServiceImpl out;
 
-    @Mock
-    private User user;
-
     @Test
     public void isBackTrueCheckUserExist() {
-        User user1 = new User("Mary");
-        when(userDaoMock.findAllUsers().contains(user1)).thenReturn(true);
-        assertEquals(true, out.checkUserExist(user1));
+        User user = new User("Mary");
+        Collection<User> users = Set.of(new User("Mary"), new User("Boris"));
+        when(userDaoMock.getUserByName(user.getName())).thenReturn(user);
+        assertEquals(true, out.checkUserExist(users, user));
     }
 
     @Test
-    public void isBackFalsCheckUserExist() {
+    public void isBackFalseCheckUserExist() {
         User user1 = new User("Mary");
-        when(userDaoMock.findAllUsers().contains(user1)).thenReturn(false);
+        when(userDaoMock.getUserByName(user1.getName())).thenReturn(new User());
         assertNotEquals(false, out.checkUserExist(user1));
     }
 }
