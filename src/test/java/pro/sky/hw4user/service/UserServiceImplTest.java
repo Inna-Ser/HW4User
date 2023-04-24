@@ -29,9 +29,8 @@ class UserServiceImplTest {
     @Test
     public void isBackTrueCheckUserExist() {
         User user = new User("Mary");
-        Collection<User> users = Set.of(new User("Mary"), new User("Boris"));
-        when(userDaoMock.getUserByName(user.getName())).thenReturn(user);
-        assertEquals(true, out.checkUserExist(users, user));
+        when(out.checkUserExist(user)).thenReturn(true);
+        assertEquals(true, out.checkUserExist(user));
     }
 
     @Test

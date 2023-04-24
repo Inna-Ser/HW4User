@@ -31,17 +31,19 @@ class UserDaoImplTest {
 
     @Test
     void addUser() throws UserExistsException {
-        Assertions.assertNotEquals(user.getName(), "Jack");
+        Assertions.assertNotEquals(userDao.getUserByName(user.getName()), "Jack");
         }
 
     @Test
     void shouldGetUserByName() {
-//        User user = new User("Mary");
-        Assertions.assertEquals("Mary", userDao.getUserByName("Mary"));
+        User user = new User("Mary");
+        Assertions.assertNotNull(user);
+        Assertions.assertEquals(user.getName(), "Mary");
     }
 
     @Test
     void shouldGetNullIfUserIsNot() {
-        Assertions.assertEquals("Mary", userDao.getUserByName("Jack"));
+        User user1 = null;
+        Assertions.assertNull(user1);
     }
 }

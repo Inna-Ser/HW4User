@@ -4,10 +4,8 @@ import org.springframework.stereotype.Service;
 import pro.sky.hw4user.User;
 import pro.sky.hw4user.dao.UserDaoImpl;
 
-import java.util.Collection;
-
 @Service
-public class UserServiceImpl implements UserSerice {
+public class UserServiceImpl implements UserService {
 
     private final UserDaoImpl userDao;
 
@@ -17,8 +15,8 @@ public class UserServiceImpl implements UserSerice {
     }
 
     @Override
-    public boolean checkUserExist(Collection<User> users, User user) {
-        if (userDao.getUserByName(user.getName()).equals(userDao.findAllUsers().contains(user))) {
+    public boolean checkUserExist(User user) {
+        if (userDao.getUserByName(user.getName()).equals(user)) {
             return true;
         }
         return false;
