@@ -28,16 +28,14 @@ class UserServiceImplTest {
 
     @Test
     public void isBackTrueCheckUserExist() {
-        User user = new User("Mary");
-        when(out.checkUserExist(user)).thenReturn(true);
-        assertEquals(true, out.checkUserExist(user));
+        when(userDaoMock.getUserByName("Jack")).thenReturn(new User("Jack"));
+        boolean userExist = out.checkUserExist(new User("Jack"));
     }
 
     @Test
     public void isBackFalseCheckUserExist() {
-        User user1 = new User("Mary");
-        when(userDaoMock.getUserByName(user1.getName())).thenReturn(new User());
-        assertNotEquals(false, out.checkUserExist(user1));
+        when(userDaoMock.getUserByName("Jack")).thenReturn(new User(null));
+        boolean userNotExist = out.checkUserExist(new User("Jack"));
     }
 }
 

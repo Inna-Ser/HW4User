@@ -16,7 +16,7 @@ import java.util.Set;
 
 class UserDaoImplTest {
 
-    static UserDaoImpl userDao;
+    static UserDaoImpl userDao = new UserDaoImpl();
     static User user;
 
     @BeforeAll
@@ -43,7 +43,6 @@ class UserDaoImplTest {
 
     @Test
     void shouldGetNullIfUserIsNot() {
-        User user1 = null;
-        Assertions.assertNull(user1);
+        Assertions.assertNull(userDao.getUserByName("Jack"));
     }
 }

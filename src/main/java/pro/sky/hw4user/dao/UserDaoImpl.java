@@ -33,7 +33,7 @@ public class UserDaoImpl implements UserDao {
     @Override
     public User getUserByName(String name) {
         for (User user : users) {
-            if (users.contains(name)) {
+            if (user.getName().equals(name)) {
                 return user;
             }
         }
@@ -41,7 +41,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public Collection<User> findAllUsers() {
+    public Set<User> findAllUsers() {
         return users;
     }
 }
