@@ -1,5 +1,6 @@
 package pro.sky.hw4user.service;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -30,12 +31,16 @@ class UserServiceImplTest {
     public void isBackTrueCheckUserExist() {
         when(userDaoMock.getUserByName("Jack")).thenReturn(new User("Jack"));
         boolean userExist = out.checkUserExist(new User("Jack"));
+        Assertions.assertTrue(userExist);
     }
 
     @Test
     public void isBackFalseCheckUserExist() {
-        when(userDaoMock.getUserByName("Jack")).thenReturn(new User(null));
+        when(userDaoMock.getUserByName("Jack")).thenReturn(null);
         boolean userNotExist = out.checkUserExist(new User("Jack"));
+        Assertions.assertFalse(userNotExist);
+
     }
 }
+
 

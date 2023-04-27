@@ -30,9 +30,11 @@ class UserDaoImplTest {
     }
 
     @Test
-    void addUser() throws UserExistsException {
-        Assertions.assertNotEquals(userDao.getUserByName(user.getName()), "Jack");
-        }
+    void addUser() {
+        Set<User> users = Set.of(new User("Mary"), new User("Boris"));
+        User user1 = new User("Boris");
+        Assertions.assertThrows(UserExistsException.class, () -> userDao.addUser(users, user1));
+    }
 
     @Test
     void shouldGetUserByName() {

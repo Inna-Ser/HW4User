@@ -5,9 +5,11 @@ import pro.sky.hw4user.exception.UserExistsException;
 import pro.sky.hw4user.exception.UserNonExistsException;
 
 import java.util.Collection;
+import java.util.Set;
 
 public interface UserDao {
-    String addUser(String name) throws UserExistsException;
+
+    User addUser(Set<User> users, User user) throws UserExistsException;
 
     User getUserByName(String name) throws UserNonExistsException;
 
